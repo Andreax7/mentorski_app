@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{%if user.is_staff %}
+
+<h4 style="text-align:center"> Are You sure you want to delete the course? </h4>
+    <div class="container" style="text-align:center; margin:10px; padding-top:20px;">
+
+        <p> <a href="{% url 'delete_course' course.id %}"> Delete</a> 
+            <a href="{%url 'courses' %}"> Go back </a>
+        </p>   
+
+    </div>
+    
+{% endif %}
+{% endblock %}

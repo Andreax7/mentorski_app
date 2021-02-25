@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Mentorski_app</title>
+        <!-- Latest compiled and minified CSS -->
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+        <link href="{% static 'main.css'%}" rel="stylesheet" >
+    </head>
+
+<body>
+{% block content %}
+ <div class="wrapper fadeInDown">
+    <h2> Login here </h2>
+   
+        <div id="formContent">
+          <!-- Tabs Titles -->
+ 
+          <!-- Login Form -->
+<form method ="POST" action="">
+    {% csrf_token %}
+    {{form.as_p}}
+        <input type='submit' value='login' name='login'>
+</form>
+</div>
+</div>
+<br>
+{% for message in messages %}
+    {{ message }}
+{% endfor %}
+
+{% endblock %}
+</body>
+</html>

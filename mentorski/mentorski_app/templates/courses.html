@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{%if user.is_staff %}
+<div class="table-responsive" style="width:80%; margin-left:20px;">
+    <table class="table table-bordered table-hover">
+        <thead class = "thead-light" style="overflow:auto;">
+        <tr style="overflow:auto;"><th>
+            <div class="col-md-6">
+                 <a href="{% url 'add' %}"> Add New Course</a>
+            </div>
+        </th>
+        </tr> 
+        </thead>
+    <tbody>
+    {% for a in all_courses %}
+        <tr><th scope="row">
+            <div class="col-md-12">
+                <p>{{ a.ime }}
+                <small class="text-muted">({{ a.kod}})</small> </p>
+                <a href="{% url 'detail_course' a.id %}"> Details</a>
+                <a href="{% url 'edit_course' a.id %}"> Edit</a>
+                <a href="{% url 'course_delete' a.id %}"> Delete</a>
+            {% if a.id == course.id %} 
+                <h5 style="font-size:11px; color:darkslategray;">Program: {{course.program}} | Bodovi: {{course.bodovi}} | Izborni: {{course.izborni}}</h5>
+                <h5 style="font-size:11px; color:darkslategray;">Semestar redovni: {{course.sem_redovni}} | Semestar izvanredni: {{course.sem_izvanredni}}</h5>
+            </div>
+            </th>
+        </tr>
+        {% endif %}
+    {% endfor %} 
+    </tbody>
+   
+</table>
+</div>
+{% endif %}
+{% endblock %}

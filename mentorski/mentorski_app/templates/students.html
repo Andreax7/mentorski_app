@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{%if user.is_staff %}
+
+<h4 style='text-align:center'> List of students: </h4>
+    <div class="container">
+    <table class="table table-bordered table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th> Status</th><th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+        {% for student in popis %}
+        {% if student.is_staff is False %}
+                <td>{{ student.email }}</td>
+                <td>{{ student.status }}</td>
+                <td> <a href="{% url 'upisni_list' kid=student.id %}"> Details </a></td>
+            </tr>
+        {% endif %}  
+    {% endfor %}
+    <tr> <td><a href="{% url 'register' %}"> New Student</a></td><td></td></tr>
+</tbody>
+</table>
+</div>
+{% else %}
+    <div class=container>
+        <h2> You are not authorized </h2>
+        <a href="{% url 'upisni_list' user.id %}"> Go Back </a>
+    </div>
+{% endif %}
+{% endblock %}
